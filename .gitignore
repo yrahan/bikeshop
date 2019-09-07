@@ -1,3 +1,14 @@
-# don't track database
+# don't track
+
+# database
 *.sqlite3
+
+# git temporaty files
+*.swp
+
+#
+*.pyc
+
+#
+**/__pycache__
 
