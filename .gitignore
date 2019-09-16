@@ -2,6 +2,7 @@
 
 # database
 *.sqlite3
+*.db
 
 # git temporaty files
 *.swp
@@ -11,4 +12,4 @@
 
 #
 **/__pycache__
-
+**/migrations
