@@ -1,7 +1,7 @@
 {% if latest_client_list %}
     <ul>
     {% for client in latest_client_list %}
-        <li><a href="/shop/{{ client.id }}/">{{ client.name }}</a></li>
+        <li><a href="/shop/{{ client.id }}/">{{ client.user.get_username}}</a></li>
     {% endfor %}
     </ul>
 {% else %}

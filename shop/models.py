@@ -1,26 +1,41 @@
 from django.db import models
-from django.utils import timezone
+# from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 
 class Client(models.Model):
-    last_name = models.CharField(max_length=20)
-    first_name = models.CharField(max_length=20)
-    email = models.EmailField(max_length=50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    def is_underage(self):
-        return timezone.now().year - self.birth_date.year < 18
+    def __str__(self):
+        return self.user.get_username()
+
+
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+    pass
+
+
+class ModelType(models.Model):
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
 
 
 class Bicycle(models.Model):
-    owner = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    manufacturer = models.ForeignKey(
+        Manufacturer, on_delete=models.CASCADE)
+    model_type = models.ForeignKey(
+        ModelType, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
-    brand = models.CharField(max_length=20)
-    to_fix = models.CharField(max_length=20)
+    description = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name

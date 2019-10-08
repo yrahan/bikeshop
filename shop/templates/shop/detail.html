@@ -1,5 +1,4 @@
 <h1>{{ client}}</h1>
-{% for choice in client.choice_set.all %}
-    <li>{{ choice.choice_text }}</li>
-{% endfor %}
-</ul>
+ {% for value in attribute_list %}
+ <td><p>{{ client.value }}</p></td>
+ {% endfor %}

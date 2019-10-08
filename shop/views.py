@@ -8,7 +8,8 @@ from django.http import HttpResponse
 from .models import Client
 
 def index(request):
-    latest_client_list=Client.objects.order_by('-birth_date')[:5]
+#    latest_client_list=Client.objects.order_by('username')[:5]
+    latest_client_list=Client.objects.all()
     context = {
             'latest_client_list' : latest_client_list,
             }
